@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SVG ¡ú GIF/WebP ¡ª Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header><h1>SVG ¡ú GIF/WebP</h1></header>
+    <div class="columns">
+      <div class="left">
+        <label>Paste / Drop animated SVG (CSS, SMIL, JavaScript allowed)</label>
+        <textarea id="svgInput" placeholder="Paste SVG here"></textarea>
+        <div class="row">
+          <input type="file" id="fileInput" accept=".svg" />
+          <button id="previewBtn">Preview</button>
+        </div>
+
+        <fieldset>
+          <legend>Output settings</legend>
+          <div class="grid">
+            <label>Width <input type="number" id="width" value="500" /></label>
+            <label>Height <input type="number" id="height" value="300" /></label>
+            <label>FPS <input type="number" id="fps" value="15" /></label>
+            <label>Duration (s) <input type="number" id="duration" value="3" step="0.1" /></label>
+            <label>Loop (0=infinite) <input type="number" id="loop" value="0" /></label>
+            <label>Background <input type="color" id="bgColor" value="#ffffff" /></label>
+            <label>Format
+              <select id="format">
+                <option value="gif" selected>GIF</option>
+                <option value="webp">WebP</option>
+              </select>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="actions">
+          <button id="saveBtn">Choose Save Location</button>
+          <span id="savePath">(not selected)</span>
+          <button id="convertBtn" class="primary">Convert</button>
+        </div>
+
+        <div id="progressWrap" style="display:none">
+          <progress id="progressBar" value="0" max="100"></progress>
+          <span id="progressText"></span>
+        </div>
+
+        <div id="message"></div>
+      </div>
+
+      <div class="right">
+        <h3>Preview</h3>
+        <div id="preview" class="previewBox">Preview will appear here</div>
+        <h4>Result</h4>
+        <img id="resultImg" style="max-width:100%; display:none" />
+      </div>
+    </div>
+
+    <footer>Built with Electron ¡ª captures frames headlessly and exports GIF/WebP.</footer>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
